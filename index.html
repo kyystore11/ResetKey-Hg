@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>HG RESET BOT | Official Hg Cheats</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, 'Segoe UI', 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+        }
+
+        body {
+            background: radial-gradient(circle at 10% 20%, #070b17, #03050b);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        /* container lebih ramping, tidak terlalu tebal */
+        .card {
+            max-width: 480px;
+            width: 100%;
+            background: rgba(12, 18, 32, 0.85);
+            backdrop-filter: blur(12px);
+            border-radius: 2rem;
+            border: 1px solid rgba(66, 153, 225, 0.25);
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.5);
+            padding: 1.4rem 1.5rem 1.8rem;
+            transition: all 0.2s ease;
+        }
+
+        /* logo + official badge */
+        .logo-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .logo-symbol {
+            width: 68px;
+            height: 68px;
+        }
+
+        .official-badge {
+            background: rgba(0, 255, 255, 0.08);
+            backdrop-filter: blur(4px);
+            padding: 4px 14px;
+            border-radius: 60px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: #6ee7ff;
+            border: 0.5px solid #2f7faa;
+            margin-top: 6px;
+        }
+
+        .hg-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(120deg, #FFFFFF, #9ac6ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.3px;
+            margin-top: 6px;
+        }
+
+        .cheats-identity {
+            font-size: 0.7rem;
+            color: #7d8bb2;
+            text-align: center;
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        /* form area minimal */
+        .reset-area {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 1.5rem;
+            padding: 1rem 0.2rem 1rem 0.2rem;
+            margin: 0.8rem 0 0.5rem;
+        }
+
+        .input-line {
+            display: flex;
+            align-items: center;
+            background: #0f1424;
+            border-radius: 3rem;
+            border: 1px solid #2a345a;
+            transition: 0.2s;
+        }
+
+        .input-line:focus-within {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 2px rgba(59,130,246,0.2);
+        }
+
+        .key-icon-small {
+            padding-left: 1.2rem;
+            font-size: 1.1rem;
+            color: #7b8cce;
+        }
+
+        #resetKeyInput {
+            background: transparent;
+            border: none;
+            padding: 0.85rem 0.8rem;
+            font-size: 0.95rem;
+            width: 100%;
+            color: white;
+            outline: none;
+            font-weight: 500;
+        }
+
+        #resetKeyInput::placeholder {
+            color: #4f5a82;
+            font-weight: 400;
+            font-size: 0.85rem;
+        }
+
+        .btn-reset {
+            background: linear-gradient(95deg, #1e2b6e, #131d48);
+            border: none;
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 3rem;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            margin-top: 0.8rem;
+            transition: 0.2s;
+            border: 0.5px solid rgba(72, 187, 255, 0.3);
+        }
+
+        .btn-reset:active {
+            transform: scale(0.97);
+        }
+
+        .message-bubble {
+            margin-top: 1rem;
+            padding: 0.6rem;
+            border-radius: 2rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-align: center;
+            background: rgba(0,0,0,0.35);
+        }
+
+        .success {
+            background: rgba(0, 200, 120, 0.15);
+            color: #a0f0c0;
+            border-left: 3px solid #2dd4bf;
+        }
+
+        .error {
+            background: rgba(255, 80, 80, 0.12);
+            color: #ffbcac;
+            border-left: 3px solid #f97373;
+        }
+
+        /* admin akses (samping kirim) — minimal */
+        .admin-access {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 0.2rem;
+        }
+
+        .ghost-admin-btn {
+            background: transparent;
+            border: none;
+            color: #5f6e97;
+            font-size: 0.7rem;
+            font-weight: 500;
+            padding: 5px 12px;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .ghost-admin-btn:hover {
+            background: rgba(255,255,240,0.05);
+            color: #b7cbff;
+        }
+
+        /* login panel small */
+        .login-panel {
+            margin-top: 0.8rem;
+            background: #0c1020cc;
+            border-radius: 1.5rem;
+            padding: 0.8rem;
+            backdrop-filter: blur(8px);
+            border: 0.5px solid #31416e;
+            display: none;
+        }
+
+        .admin-pass-group {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            background: #0a0e1c;
+            border-radius: 3rem;
+            padding: 0 0.3rem 0 1rem;
+            border: 1px solid #2f3a60;
+        }
+
+        .admin-pass-group input {
+            background: transparent;
+            border: none;
+            padding: 0.6rem 0;
+            flex: 1;
+            color: white;
+            outline: none;
+            font-size: 0.85rem;
+        }
+
+        .admin-login-btn {
+            background: #2b3a6e;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            color: white;
+            font-weight: 600;
+            font-size: 0.75rem;
+            cursor: pointer;
+        }
+
+        /* dashboard admin — ramping */
+        .dashboard {
+            margin-top: 1rem;
+            background: #070c19b3;
+            border-radius: 1.4rem;
+            padding: 0.8rem;
+            border: 0.5px solid #2b3b68;
+            display: none;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            border-bottom: 1px dashed #34446e;
+            padding-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .dashboard-header h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #c7d6ff;
+        }
+
+        .key-counter {
+            background: #10182f;
+            padding: 0.2rem 0.7rem;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #b0e0ff;
+        }
+
+        .key-log-list {
+            max-height: 220px;
+            overflow-y: auto;
+            margin-bottom: 0.6rem;
+        }
+
+        .key-row {
+            background: #0a0f1d;
+            margin-bottom: 0.5rem;
+            padding: 0.45rem 0.8rem;
+            border-radius: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.75rem;
+            border: 0.2px solid #293659;
+        }
+
+        .key-text {
+            font-family: monospace;
+            font-weight: 600;
+            color: #b4d0ff;
+            word-break: break-all;
+            max-width: 60%;
+        }
+
+        .key-time {
+            font-size: 0.6rem;
+            color: #7f8db0;
+        }
+
+        .delete-key-btn {
+            background: #ff4d4d20;
+            border: none;
+            padding: 0.2rem 0.7rem;
+            border-radius: 2rem;
+            font-size: 0.65rem;
+            font-weight: bold;
+            color: #ffa098;
+            cursor: pointer;
+            transition: 0.1s;
+        }
+
+        .logout-admin-sm {
+            background: none;
+            border: 1px solid #5b6f9e;
+            padding: 0.3rem 0.8rem;
+            border-radius: 2rem;
+            font-size: 0.65rem;
+            font-weight: 500;
+            color: #bcc9ff;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 0.5rem;
+        }
+
+        .empty-list {
+            text-align: center;
+            color: #636e95;
+            font-size: 0.7rem;
+            padding: 1rem;
+        }
+
+        .footer-note {
+            font-size: 0.6rem;
+            text-align: center;
+            margin-top: 1rem;
+            color: #3b4670;
+        }
+
+        /* no thick margin */
+        hr {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="card">
+    <div class="logo-header">
+        <!-- Logo ramping, official terintegrasi -->
+        <div class="logo-symbol">
+            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="40" cy="40" r="36" fill="#0a1122" stroke="#2e7eb0" stroke-width="1.2"/>
+                <path d="M29 36 L29 30 C29 24.2 33.7 19.5 40 19.5 C46.3 19.5 51 24.2 51 30 L51 36" stroke="#5293e0" stroke-width="3" stroke-linecap="round" fill="none"/>
+                <rect x="27.5" y="35.5" width="25" height="22" rx="5" fill="#121f40" stroke="#4b84e0" stroke-width="1.2"/>
+                <circle cx="40" cy="47" r="3.5" fill="#70bcff" stroke="#3896ff" stroke-width="1"/>
+                <path d="M40 50 L40 54 M36 56 L44 56" stroke="#71befc" stroke-width="2" stroke-linecap="round"/>
+                <path d="M22 22 L58 58" stroke="#294577" stroke-width="1" stroke-dasharray="2 2"/>
+            </svg>
+        </div>
+        <div class="official-badge">OFFICIAL</div>
+        <div class="hg-title">HG RESET BOT</div>
+        <div class="cheats-identity">⚡ Official Hg Cheats | Reset System ⚡</div>
+    </div>
+
+    <div class="reset-area">
+        <div class="input-line">
+            <span class="key-icon-small">🔑</span>
+            <input type="text" id="resetKeyInput" placeholder="Masukkan Key HG ..." autocomplete="off">
+        </div>
+        <button class="btn-reset" id="submitResetBtn">
+            <span>⟳</span> RESET KEY
+        </button>
+        <div id="globalMessage" class="message-bubble"></div>
+    </div>
+
+    <!-- Samping kirim : tombol login admin rahasia -->
+    <div class="admin-access">
+        <button id="adminToggleBtn" class="ghost-admin-btn">🔐 Admin • Akses Tersembunyi</button>
+    </div>
+
+    <!-- Panel Login Admin (rahasia) dengan key admin = 66 -->
+    <div id="adminLoginContainer" class="login-panel">
+        <div class="admin-pass-group">
+            <span style="color:#7c8bc0;">👑</span>
+            <input type="password" id="adminKeyInput" placeholder="Kunci Admin (tersembunyi)" autocomplete="off">
+            <button id="doAdminLogin" class="admin-login-btn">MASUK</button>
+        </div>
+        <div id="adminLoginError" style="font-size:0.7rem; margin-top: 6px; color:#ffa098; text-align:center;"></div>
+    </div>
+
+    <!-- Dashboard Admin (tempat data key & reset key dari sisi admin) -->
+    <div id="adminDashboardPanel" class="dashboard">
+        <div class="dashboard-header">
+            <h4>📋 DATA KEY RESET</h4>
+            <span class="key-counter" id="totalKeyCount">0 Key</span>
+        </div>
+        <div id="keyHistoryList" class="key-log-list">
+            <div class="empty-list">Belum ada key yang di-reset.</div>
+        </div>
+        <button id="adminLogoutBtnPanel" class="logout-admin-sm">🚪 Sembunyikan Panel & Logout</button>
+        <div style="font-size: 0.6rem; text-align:center; margin-top: 6px; color:#515e85;">* Tombol "Reset Key" di samping setiap item untuk menghapus dari data admin</div>
+    </div>
+    <div class="footer-note">HG CLIENT • RESET BOT — Official Hg Cheats</div>
+</div>
+
+<script>
+    // ---------- PENYIMPANAN SEMUA KEY YANG DIRESET (ADMIN DATABASE) ----------
+    let hgKeysDatabase = [];  // [{ value: string, timestamp: string }]
+
+    // Konstanta rahasia admin (key = 66) TERSEMBUNYI tidak diperlihatkan dimanapun
+    const ADMIN_HIDDEN_KEY = "66";
+    let adminActive = false;
+
+    // DOM elements
+    const resetInput = document.getElementById('resetKeyInput');
+    const resetBtn = document.getElementById('submitResetBtn');
+    const globalMsgDiv = document.getElementById('globalMessage');
+    const adminToggleBtn = document.getElementById('adminToggleBtn');
+    const adminLoginContainer = document.getElementById('adminLoginContainer');
+    const adminKeyInput = document.getElementById('adminKeyInput');
+    const doAdminLoginBtn = document.getElementById('doAdminLogin');
+    const adminLoginErrorSpan = document.getElementById('adminLoginError');
+    const adminDashboardPanel = document.getElementById('adminDashboardPanel');
+    const keyHistoryListDiv = document.getElementById('keyHistoryList');
+    const totalKeyCountSpan = document.getElementById('totalKeyCount');
+    const adminLogoutBtnPanel = document.getElementById('adminLogoutBtnPanel');
+
+    // ================== LOCALSTORAGE ==================
+    function loadDatabase() {
+        const stored = localStorage.getItem('hg_official_reset_db');
+        if (stored) {
+            try {
+                const parsed = JSON.parse(stored);
+                if (Array.isArray(parsed)) hgKeysDatabase = parsed;
+                else hgKeysDatabase = [];
+            } catch(e) { hgKeysDatabase = []; }
+        } else {
+            hgKeysDatabase = [];
+        }
+        // validasi setiap entry minimal ada value
+        hgKeysDatabase = hgKeysDatabase.filter(entry => entry && typeof entry.value === 'string');
+        saveDatabase();
+    }
+
+    function saveDatabase() {
+        localStorage.setItem('hg_official_reset_db', JSON.stringify(hgKeysDatabase));
+    }
+
+    // Menambah key baru ketika user melakukan reset
+    function addKeyToDatabase(keyValue) {
+        const trimmed = keyValue.trim();
+        if (trimmed === "") return false;
+        const newEntry = {
+            value: trimmed,
+            timestamp: new Date().toLocaleString('id-ID', { hour12: false })
+        };
+        hgKeysDatabase.unshift(newEntry); // terbaru di atas
+        saveDatabase();
+        if (adminActive) renderAdminKeyList();
+        return true;
+    }
+
+    // Menghapus key dari database (fitur admin: reset/delete key dari data admin)
+    function deleteKeyByIndex(index) {
+        if (index >= 0 && index < hgKeysDatabase.length) {
+            const removed = hgKeysDatabase[index].value;
+            hgKeysDatabase.splice(index, 1);
+            saveDatabase();
+            if (adminActive) renderAdminKeyList();
+            // optional flash notif untuk admin
+            showFloatingNotif(`🗑️ Key "${removed}" telah di-reset dari data admin.`);
+            return true;
+        }
+        return false;
+    }
+
+    // notifikasi kecil jika admin melakukan aksi
+    function showFloatingNotif(msg, isError = false) {
+        const notif = document.createElement('div');
+        notif.innerText = msg;
+        notif.style.position = 'fixed';
+        notif.style.bottom = '16px';
+        notif.style.left = '16px';
+        notif.style.right = '16px';
+        notif.style.maxWidth = '300px';
+        notif.style.margin = '0 auto';
+        notif.style.background = isError ? '#aa2e2ecc' : '#0c1f33cc';
+        notif.style.backdropFilter = 'blur(12px)';
+        notif.style.color = '#d5e6ff';
+        notif.style.padding = '8px 14px';
+        notif.style.borderRadius = '60px';
+        notif.style.fontSize = '0.75rem';
+        notif.style.fontWeight = '500';
+        notif.style.textAlign = 'center';
+        notif.style.border = '0.5px solid #61afff';
+        notif.style.zIndex = '999';
+        notif.style.boxShadow = '0 4px 12px black';
+        document.body.appendChild(notif);
+        setTimeout(() => { notif.remove(); }, 2200);
+    }
+
+    // Render daftar key untuk admin
+    function renderAdminKeyList() {
+        if (!adminActive) return;
+        const container = keyHistoryListDiv;
+        const total = hgKeysDatabase.length;
+        totalKeyCountSpan.innerText = total + (total === 1 ? " Key" : " Key");
+
+        if (total === 0) {
+            container.innerHTML = `<div class="empty-list">📭 Belum ada key yang direset oleh user.</div>`;
+            return;
+        }
+
+        let html = '';
+        hgKeysDatabase.forEach((item, idx) => {
+            const safeValue = escapeHtml(item.value);
+            const waktu = item.timestamp || "baru saja";
+            html += `
+                <div class="key-row" data-row-idx="${idx}">
+                    <div style="flex:1; overflow:hidden;">
+                        <div class="key-text">🔹 ${safeValue}</div>
+                        <div class="key-time">📅 ${waktu}</div>
+                    </div>
+                    <button class="delete-key-btn" data-idx="${idx}">Reset Key</button>
+                </div>
+            `;
+        });
+        container.innerHTML = html;
+
+        // attach event untuk tombol hapus (Reset Key dari database admin)
+        document.querySelectorAll('.delete-key-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const idxAttr = btn.getAttribute('data-idx');
+                if (idxAttr !== null) {
+                    const idxNum = parseInt(idxAttr, 10);
+                    if (!isNaN(idxNum)) {
+                        deleteKeyByIndex(idxNum);
+                    }
+                }
+            });
+        });
+    }
+
+    function escapeHtml(str) {
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        });
+    }
+
+    // ---------- PROSES RESET KEY DARI USER ----------
+    function processUserReset() {
+        const rawKey = resetInput.value;
+        if (!rawKey || rawKey.trim() === "") {
+            showMessage('❌ Key tidak boleh kosong! Masukkan key HG.', 'error');
+            return;
+        }
+        const finalKey = rawKey.trim();
+        // tambahkan ke database admin
+        addKeyToDatabase(finalKey);
+
+        // tampilkan pesan sukses
+        showMessage(`✅ KEY BERHASIL! Key "${finalKey}" telah di-reset & masuk database admin.`, 'success');
+        resetInput.value = '';
+
+        // sedikit delay buat refresh jika admin panel terbuka
+        if (adminActive) {
+            renderAdminKeyList();
+        }
+    }
+
+    function showMessage(msg, type) {
+        globalMsgDiv.innerHTML = msg;
+        globalMsgDiv.classList.remove('success', 'error');
+        if (type === 'success') globalMsgDiv.classList.add('success');
+        else if (type === 'error') globalMsgDiv.classList.add('error');
+        setTimeout(() => {
+            if (globalMsgDiv.innerHTML === msg) {
+                globalMsgDiv.innerHTML = '';
+                globalMsgDiv.classList.remove('success', 'error');
+            }
+        }, 3200);
+    }
+
+    // =============== ADMIN LOGIN & LOGOUT (Key 66 tersembunyi) ===============
+    function attemptAdminLogin() {
+        const entered = adminKeyInput.value;
+        if (entered === ADMIN_HIDDEN_KEY) {
+            adminActive = true;
+            adminLoginContainer.style.display = 'none';
+            adminDashboardPanel.style.display = 'block';
+            adminKeyInput.value = '';
+            adminLoginErrorSpan.innerText = '';
+            renderAdminKeyList();
+            showMessage('🔓 Admin berhasil login. Data key dapat dikelola.', 'success');
+        } else {
+            adminLoginErrorSpan.innerText = '❌ Kunci admin salah! Akses ditolak.';
+            setTimeout(() => { adminLoginErrorSpan.innerText = ''; }, 1800);
+        }
+    }
+
+    function logoutAdmin() {
+        adminActive = false;
+        adminDashboardPanel.style.display = 'none';
+        adminLoginContainer.style.display = 'none';
+        // mereset tampilan agar login panel tidak muncul tanpa diminta
+        showMessage('🔒 Admin logout, panel data tersembunyi.', 'success');
+    }
+
+    // toggle panel login admin (samping kirim)
+    function toggleAdminLoginUi() {
+        if (adminActive) {
+            // jika sudah login, tawarkan logout
+            if (confirm("Anda sedang login sebagai admin. Keluar dari mode admin?")) {
+                logoutAdmin();
+            }
+        } else {
+            // jika panel login sedang tampil atau tidak
+            if (adminLoginContainer.style.display === 'none') {
+                adminLoginContainer.style.display = 'block';
+                adminDashboardPanel.style.display = 'none';
+            } else {
+                adminLoginContainer.style.display = 'none';
+            }
+        }
+    }
+
+    // ================ INITIAL SETUP ================
+    function init() {
+        loadDatabase();
+        // event reset key
+        resetBtn.addEventListener('click', processUserReset);
+        resetInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') processUserReset();
+        });
+        // admin toggle
+        adminToggleBtn.addEventListener('click', toggleAdminLoginUi);
+        doAdminLoginBtn.addEventListener('click', attemptAdminLogin);
+        adminLogoutBtnPanel.addEventListener('click', () => {
+            if (adminActive) logoutAdmin();
+            else {
+                adminDashboardPanel.style.display = 'none';
+                adminLoginContainer.style.display = 'none';
+            }
+        });
+        // pada awal, semua panel tertutup & tidak ada admin login
+        adminActive = false;
+        adminDashboardPanel.style.display = 'none';
+        adminLoginContainer.style.display = 'none';
+        // pastikan admin tidak terlihat
+    }
+
+    init();
+</script>
+</body>
+</html>
